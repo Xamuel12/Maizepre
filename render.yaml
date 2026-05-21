@@ -10,7 +10,8 @@ services:
     plan: starter
 
     region: oregon
-    buildCommand: "pip install --upgrade pip setuptools wheel && pip install -r requirements.txt"
+    buildCommand: "pip install --upgrade pip setuptools wheel && pip install --only-binary=:all: -r requirements.txt"
+
     startCommand: "gunicorn backend.app:create_app --bind 0.0.0.0:10000"
 
     envVars:
