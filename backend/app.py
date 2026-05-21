@@ -80,18 +80,27 @@ def create_app():
             flush=True,
         )
 
+        password_hash = generate_password_hash(password)
         user_store.create_user(
             email=email,
             username=username,
-            password_hash=generate_password_hash(password),
+            password_hash=password_hash,
             first_name=first_name,
             last_name=last_name,
             age=age,
             occupation=occupation,
         )
 
-        flash("Signup successful. Please login.", "success")
-        return redirect(url_for("login_get"))
+        session["user_email"] = email
+        session["username"] = username
+        session["recent_signup"] = {
+            "email": email,
+            "username": username,
+            "password_hash": password_hash,
+        }
+
+        flash("Signup successful. You are now logged in.", "success")
+        return redirect(url_for("predict_get"))
 
     @app.get("/login")
     def login_get():
@@ -103,6 +112,13 @@ def create_app():
         password = request.form.get("password") or ""
 
         user = user_store.get_user_by_username(username)
+        if not user:
+            recent_signup = session.get("recent_signup")
+            if recent_signup and recent_signup.get("username") == username and check_password_hash(
+                recent_signup.get("password_hash", ""), password
+            ):
+                user = recent_signup
+
         if not user or not check_password_hash(user["password_hash"], password):
             flash("Invalid username or password.", "danger")
             return redirect(url_for("login_get"))
