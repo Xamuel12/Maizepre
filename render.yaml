@@ -5,9 +5,11 @@ services:
   - type: web
     name: maize-prediction
     runtime: python
+    pythonVersion: 3.11
+
     plan: starter
     region: oregon
-    buildCommand: "pip install -r requirements.txt"
+    buildCommand: "pip install --upgrade pip setuptools wheel && pip install -r requirements.txt"
     startCommand: "gunicorn backend.app:create_app --bind 0.0.0.0:10000"
 
     envVars:
