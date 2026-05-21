@@ -5,7 +5,7 @@ services:
   - type: web
     name: maize-prediction
     runtime: python
-    pythonVersion: 3.11
+    pythonVersion: 3.11.9
 
     plan: starter
 
