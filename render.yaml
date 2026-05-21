@@ -1,0 +1,17 @@
+# Render blueprint for deploying the Flask app (Python)
+# Uses the root app.py entrypoint.
+
+services:
+  - type: web
+    name: maize-prediction
+    runtime: python
+    plan: starter
+    region: oregon
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:create_app --bind 0.0.0.0:10000"
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: PORT
+        value: "10000"
+      # Add your Neon URL here in Render Dashboard as DATABASE_URL
