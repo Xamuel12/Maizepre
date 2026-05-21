@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block title %}Sign Up - Maize Yield Prediction{% endblock %}
+
+{% block content %}
+  <div class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-md-7 col-lg-6">
+        <div class="card-plain p-4">
+          <div class="mb-3">
+            <h2 class="h4 mb-1">Create your account</h2>
+            <div class="text-muted small">Only email + password are stored in this demo.</div>
+          </div>
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+
+          {# We keep backend storage simple, but UI is more professional #}
+          <form method="POST" action="/signup" id="signupForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">First name</label>
+                <input type="text" class="form-control" placeholder="John" name="first_name">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Last name</label>
+                <input type="text" class="form-control" placeholder="Doe" name="last_name">
+              </div>
+
+              <div class="col-12">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" placeholder="name@example.com" name="email" required>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Username</label>
+                <input type="text" class="form-control" placeholder="e.g., john_doe" name="username" required>
+              </div>
+
+
+              <div class="col-md-6">
+                <label class="form-label">Age (optional)</label>
+                <input type="number" class="form-control" placeholder="e.g., 25" name="age" min="1">
+              </div>
+
+              <div class="col-12">
+                <label class="form-label">Occupation (optional)</label>
+                <input type="text" class="form-control" placeholder="e.g., Farmer" name="occupation">
+              </div>
+
+
+              <div class="col-md-6">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" placeholder="Minimum 6 characters" name="password" required minlength="6">
+                <div class="form-text">Use a strong password.</div>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Confirm password</label>
+                <input type="password" class="form-control" placeholder="Confirm password" name="confirm_password" required minlength="6">
+                <div class="invalid-feedback">Passwords do not match.</div>
+              </div>
+
+              <div class="col-12">
+                <button class="btn btn-brand w-100 rounded-pill" type="submit">Create account</button>
+              </div>
+            </div>
+          </form>
+
+          <div class="text-muted small mt-3">
+            Already have an account? <a class="text-success fw-semibold" href="/login">Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Frontend-only validation for better UX
+    (function(){
+      const form = document.getElementById('signupForm');
+      if(!form) return;
+      const pass = form.querySelector('input[name="password"]');
+      const confirm = form.querySelector('input[name="confirm_password"]');
+
+      function validate(){
+        if(!pass || !confirm) return true;
+        if(confirm.value !== pass.value){
+          confirm.classList.add('is-invalid');
+          return false;
+        }
+        confirm.classList.remove('is-invalid');
+        return true;
+      }
+
+      form.addEventListener('submit', (e)=>{
+        const ok = validate();
+        if(!ok){
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      });
+    })();
+  </script>
+{% endblock %}
+

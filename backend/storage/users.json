@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "email": "ifeoluwamalaolu@gmail.com",
+      "username": "pilot",
+      "first_name": "Malaolu",
+      "last_name": "Samuel",
+      "age": 22,
+      "occupation": "teacher",
+      "password_hash": "scrypt:32768:8:1$B2Tf9Nfq1v1dgF3L$293374002c618da0a2ef9ac89374980257335654bcc05b9f47e1fb303194fbf078eff04e257a0cf8be1e1dc4e6f3bd187f104cc2ded4395613dff2894c3d29eb"
+    },
+    {
+      "email": "malaoluifeoluwa1@gmail.com",
+      "username": "sammy",
+      "first_name": "ifedapo",
+      "last_name": "Samuel",
+      "age": 26,
+      "occupation": "Welder",
+      "password_hash": "scrypt:32768:8:1$JNUXrMOA1gbbYq7c$b365fec2ea9b9a70d4f8ca73a69fab306b08c656e7149356ae778fbccb93457e60df333e0adce8ae47d99073b24c782dd74d9615bf990b81742a0b837b765be0"
+    },
+    {
+      "email": "jay",
+      "username": "boss",
+      "first_name": "ife",
+      "last_name": "sam",
+      "age": 33,
+      "occupation": "Farmer",
+      "password_hash": "scrypt:32768:8:1$nU7dwWYzMm0xey65$71c23432d279cf502681b2e878ce6d15774cfde3f2c9eac571655ec1863de6a1dab407014039e7ac53441b72083c20f6fded1b9a4c8c9666f9133972ef129492"
+    }
+  ]
+}

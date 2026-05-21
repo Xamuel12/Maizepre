@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Home - Maize Yield Prediction (Nigeria){% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <div class="hero-card p-4 p-md-5">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <span class="badge badge-soft rounded-pill px-3 py-2">ML-based maize yield prediction</span>
+              <span class="text-muted small">Designed for Nigeria</span>
+            </div>
+
+            <h1 class="display-6 fw-bold mb-3">Predict maize yield—faster decisions for Nigerian farmers</h1>
+            <p class="text-muted" style="max-width: 60ch;">
+              This web app estimates maize yield using machine learning trained on historical agricultural data.
+              Provide rainfall, temperature, soil properties, fertilizer application, and planting time—then get a predicted yield.
+            </p>
+
+            <div class="row g-3 mt-2">
+              <div class="col-md-6">
+                <div class="feature-card p-3 h-100">
+                  <div class="fw-bold mb-1">1) Input your farm data</div>
+                  <div class="text-muted small">Rainfall, temperature, soil pH, soil nitrogen, fertilizer (kg/ha) and planting day.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="feature-card p-3 h-100">
+                  <div class="fw-bold mb-1">2) Get a yield estimate</div>
+                  <div class="text-muted small">Model inference uses saved training artifacts.</div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="alert alert-info mt-1 mb-0">
+                  <b>Dataset:</b> place your CSV at <code>data/maize_yield.csv</code> (header required, column names must match <code>backend/ml/config.py</code>).
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 mt-4">
+              <a class="btn btn-brand rounded-pill px-4" href="/login">Login to predict</a>
+              <a class="btn btn-outline-success rounded-pill px-4" href="/signup">Create account</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="hero-image">
+            <img src="{{ url_for('static', filename='images/Comp1-9.jpg') }}" alt="Maize field" onerror="this.style.display='none'">
+
+            <div class="position-absolute bottom-0 start-0 p-3 text-white">
+              <div class="fw-bold">Healthy growth, better yield</div>
+              <div class="small" style="opacity:.9">Rainfall • Soil • Fertilizer • Planting time</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 mt-4">
+        <div class="col-md-4">
+          <div class="feature-card p-3">
+            <div class="fw-bold">Better planning</div>
+            <div class="text-muted small">Use predictions to plan inputs and timing.</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card p-3">
+            <div class="fw-bold">Simple & fast</div>
+            <div class="text-muted small">Mobile-friendly Bootstrap interface.</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card p-3">
+            <div class="fw-bold">ML-powered</div>
+            <div class="text-muted small">Trained with scikit-learn regression.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+

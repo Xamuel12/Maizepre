@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Login - Maize Yield Prediction{% endblock %}
+
+{% block content %}
+  <div class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-md-7 col-lg-5">
+        <div class="card-plain p-4">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <div>
+              <h2 class="h4 mb-0">Login</h2>
+              <div class="text-muted small">Enter your details to continue</div>
+            </div>
+          </div>
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+
+          <form method="POST" action="/login">
+            <div class="mb-3">
+              <label class="form-label">Username</label>
+              <input type="text" name="username" class="form-control" placeholder="e.g., john_doe" required>
+            </div>
+
+
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <input type="password" name="password" class="form-control" placeholder="Your password" required minlength="6">
+            </div>
+
+            <button class="btn btn-brand w-100 rounded-pill" type="submit">Login</button>
+          </form>
+
+          <div class="text-muted small mt-3">
+            New here? <a class="text-success fw-semibold" href="/signup">Create an account</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
