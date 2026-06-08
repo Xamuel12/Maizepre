@@ -18,9 +18,10 @@ def create_app():
     user_store = UserStore(os.path.join(
         os.path.dirname(__file__), "storage", "users.json"))
 
+    # UPDATED: Changed from rendering home.html to redirecting directly to login
     @app.get("/")
     def home():
-        return render_template("home.html")
+        return redirect(url_for("login_get"))
 
     @app.get("/signup")
     def signup_get():
