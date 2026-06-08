@@ -18,7 +18,6 @@ def create_app():
     user_store = UserStore(os.path.join(
         os.path.dirname(__file__), "storage", "users.json"))
 
-    # UPDATED: Changed from rendering home.html to redirecting directly to login
     @app.get("/")
     def home():
         return redirect(url_for("login_get"))
@@ -92,16 +91,16 @@ def create_app():
             occupation=occupation,
         )
 
-        session["user_email"] = email
-        session["username"] = username
+        # UPDATED: Removed automatic session creation for 'user_email' and 'username'
         session["recent_signup"] = {
             "email": email,
             "username": username,
             "password_hash": password_hash,
         }
 
-        flash("Signup successful. You are now logged in.", "success")
-        return redirect(url_for("predict_get"))
+        # UPDATED: Redirecting directly to the login interface instead of prediction layout
+        flash("Signup successful! Please log in with your new account.", "success")
+        return redirect(url_for("login_get"))
 
     @app.get("/login")
     def login_get():
